@@ -1,0 +1,266 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cal Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #000000;
+    min-height: 100vh;
+    color: white;
+    overflow-x: hidden;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.main-content {
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+    to {
+        box-shadow: 0 20px 60px rgba(111, 156, 214, 0.2);
+    }
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.main-image:hover {
+    transform: scale(1.02);
+}
+
+.info-panel {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.015); /* Made more transparent */
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Made more transparent */
+    border-radius: 24px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.update-info {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(58, 175, 190, 0.1);
+}
+
+.update-info h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, #ce96b7, #75083f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.date {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    /* New: Animation for the countdown text */
+    animation: pulse-glow 2s infinite alternate;
+}
+
+@keyframes pulse-glow {
+    from {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+    to {
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(211, 3, 107, 0.5);
+    }
+}
+
+.developer-section, .collaborators-section {
+    margin-bottom: 2rem;
+}
+
+.developer-section h3, .collaborators-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+}
+
+.developer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.developer:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.name-and-flags {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Small gap between name and flag icon */
+}
+
+.collaborators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.collaborator {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.collaborator:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.02);
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.1);
+}
+
+.dev-pic {
+    background: url('/d49ed76a5833ae969431fe5704b5f7f2.webp') center center / cover no-repeat;
+}
+
+.collab-pic-1 {
+    background: url('/descargar (1).jpg') center center / cover no-repeat;
+}
+
+.collab-pic-2 {
+    background: url('/1716235384821.gif') center center / cover no-repeat;
+}
+
+.collab-pic-3 {
+    background: url('/menino.jpg') center center / cover no-repeat;
+}
+
+.collab-pic-4 {
+    background: url('/dd.jpg') center center / cover no-repeat;
+}
+
+.name {
+    font-weight: 400;
+    color: white; /* Changed to white as per previous instruction */
+    font-size: 0.95rem;
+}
+
+.country-flag {
+    width: 20px; /* Adjust size as needed */
+    height: auto;
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .main-content {
+        gap: 2rem;
+    }
+    
+    .info-panel {
+        padding: 2rem;
+    }
+    
+    .update-info h2 {
+        font-size: 1.5rem;
+    }
+    
+    .collaborators-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .info-panel {
+        padding: 1.5rem;
+    }
+    
+    .update-info h2 {
+        font-size: 1.3rem;
+    }
+    
+    .date {
+        font-size: 1rem;
+    }
+    
+    .profile-pic {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .name {
+        font-size: 0.9rem;
+    }
+    .country-flag {
+        width: 18px;
+    }
+}

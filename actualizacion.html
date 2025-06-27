@@ -1,0 +1,116 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualización</title>
+    <link rel="stylesheet" href="stylesac.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <div class="image-container">
+                <img src="/update v8.png" alt="Taita Kit v8.0 Update" class="main-image">
+            </div>
+            
+            <div class="info-panel">
+                <div class="update-info">
+                    <h2>Actualización en</h2>
+                    <p id="countdown" class="date"></p>
+                </div>
+                
+                <div class="developer-section">
+                    <h3>Desarrollado por</h3>
+                    <div class="developer">
+                        <div class="profile-pic dev-pic"></div>
+                        <div class="name-and-flags">
+                            <span class="name">Alexa Olivera</span>
+                            <img src="/peru_flag.png" alt="Bandera de Perú" class="country-flag">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="collaborators-section">
+                    <h3>Colaboradores</h3>
+                    <div class="collaborators-grid">
+                        <div class="collaborator">
+                            <div class="profile-pic collab-pic-1"></div>
+                            <div class="name-and-flags">
+                                <span class="name">Maya Ferreira</span>
+                                <img src="/brazil_flag.png" alt="Bandera de Brasil" class="country-flag">
+                            </div>
+                        </div>
+                        <div class="collaborator">
+                            <div class="profile-pic collab-pic-2"></div>
+                            <div class="name-and-flags">
+                                <span class="name">Cielo Olivera</span>
+                                <img src="/peru_flag.png" alt="Bandera de Perú" class="country-flag">
+                            </div>
+                        </div>
+                        <div class="collaborator">
+                            <div class="profile-pic collab-pic-3"></div>
+                            <div class="name-and-flags">
+                                <span class="name">Matheus Silva</span>
+                                <img src="/brazil_flag.png" alt="Bandera de Brasil" class="country-flag">
+                            </div>
+                        </div>
+                        <div class="collaborator">
+                            <div class="profile-pic collab-pic-4"></div>
+                            <div class="name-and-flags">
+                                <span class="name">Danho Fx</span>
+                                <img src="/argentina_flag.png" alt="Bandera de Argentina" class="country-flag">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countdownElement = document.getElementById('countdown');
+            const targetDateKey = 'taitaKitUpdateTargetDate';
+            let targetDate;
+
+            // Check if a target date is already stored in localStorage
+            const storedTargetDate = localStorage.getItem(targetDateKey);
+
+            if (storedTargetDate) {
+                // If a date is stored, use it
+                targetDate = new Date(parseInt(storedTargetDate, 10));
+            } else {
+                // If no date is stored, calculate a new one (current time + 7 days + 3 hours)
+                targetDate = new Date();
+                targetDate.setDate(targetDate.getDate() + 7);
+                targetDate.setHours(targetDate.getHours() + 3);
+                // Store the new target date in localStorage as a timestamp
+                localStorage.setItem(targetDateKey, targetDate.getTime().toString());
+            }
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate.getTime() - now;
+
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.innerHTML = "¡Disponible ahora!";
+                    countdownElement.style.color = '#ffd700'; // Change color when available
+                    localStorage.removeItem(targetDateKey); // Clear stored date when available
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown(); // Initial call to display immediately
+        });
+    </script>
+</body>
+</html>
